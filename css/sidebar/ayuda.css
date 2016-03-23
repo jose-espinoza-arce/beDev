@@ -1,0 +1,30 @@
+#side {
+    background-color: #f7efe7;
+    height: 100%;
+    width: 300px;
+    padding: 1rem;
+    z-index: 9999999999;
+}
+
+.titulo-side {
+    font-size: 1.5rem;
+}
+
+.side-informativo ul {
+    list-style: none;
+}
+
+.side-informativo li {
+    background: url("img/generales/vienta.png") 0 10px no-repeat;
+    padding-left: 30px;
+    margin-top: 5px;
+}
+
+li {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.gris {
+    color: #59595b;
+}

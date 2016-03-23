@@ -1,0 +1,236 @@
+/* -------------------------------- 
+
+Main components 
+
+-------------------------------- */
+
+*::after {
+    content: '';
+}
+
+.cd-tabs {
+	position: relative;
+	width: 100%;
+	max-width: $L; // breakpoints inside partials > _layout.scss
+	margin: 0em auto;
+	@include clearfix;
+    background-color: rgba(255,255,255,0);
+
+	&::after {
+		/* subtle gradient layer on top right - to indicate it's possible to scroll */
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: $tabs-btn-height-S; // see variables inside partials > _variables.scss
+		width: 0px;
+		z-index: 1;
+		pointer-events: none;
+		@include background(linear-gradient(to left, $color-1, rgba($color-1, 0)));
+		visibility: visible;
+		opacity: 1;
+		-webkit-transition: opacity .3s 0s, visibility 0s 0s;
+		-moz-transition: opacity .3s 0s, visibility 0s 0s;
+		transition: opacity .3s 0s, visibility 0s 0s;
+
+		.no-cssgradients & {
+			display: none;
+		}
+	}
+
+	&.is-ended::after {
+		/* class added in jQuery - remove the gradient layer when it's no longer possible to scroll */
+		visibility: hidden;
+		opacity: 0;
+		-webkit-transition: opacity .3s 0s, visibility 0s .3s;
+		-moz-transition: opacity .3s 0s, visibility 0s .3s;
+		transition: opacity .3s 0s, visibility 0s .3s;
+	}
+
+	nav {
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+		background-color: rgba(255,255,255,0);
+		box-shadow: inset 0 -2px 3px rgba(darken($color-1, 30%), .06);
+        
+	}
+
+	@include MQ(M) {
+		&::after {
+			display: none;
+		}
+
+		nav {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			background-color: rgba(255,255,255,0);
+			box-shadow: inset -2px 0 3px rgba(darken($color-1, 30%), .06);
+			z-index: 1;
+		}
+	}
+
+	@include MQ(L) {
+        &::after {
+            display: none;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+			background-color: rgba(255,255,255,0);
+            box-shadow: inset -2px 0 3px rgba(darken($color-1, 0%), .01);
+            z-index: 1;
+        }
+    }
+}
+
+.cd-tabs-navigation {
+	width: $tabs-btn-width-S + 40px * $tabs-btn-number; // see variables inside partials > _variables.scss
+	@include clearfix;
+    background-color: rgba(255,255,255,0);
+
+	li {
+		float: left;
+        list-style: none;
+        border: 0px;
+		padding: 0px;
+		display: block;
+	}
+
+	a {
+		position: relative;
+		display: block;
+		height: $tabs-btn-height-S;
+		width: $tabs-btn-width-S;
+		text-align: center;
+		@include font-size(12px);
+		@include font-smoothing;
+		font-weight: 700;
+		color: $color-5;
+		padding-top: $tabs-btn-height-S - 20px;
+		padding-left: 0;
+		padding-bottom: 0;
+		padding-right: 0;
+
+		.no-touch &:hover {
+			color: $color-3;
+			background-color: rgba(255,255,255,0);
+		}
+
+		&.selected {
+			background-color: $color-4 !important;
+			box-shadow: inset 0 0px 0 $color-2;
+			color: $color-3;
+            border: 0px;
+			padding: .2rem;
+			border-left: 0px;
+		}
+
+	}
+
+	@include MQ(M) {
+		/* move the nav to the left on medium sized devices */
+		width: $tabs-btn-width-M;
+		float: left;
+
+		a {
+			height: $tabs-btn-height-M;
+			width: $tabs-btn-width-M;
+			padding-top: $tabs-btn-height-M - 77px;
+
+			&.selected {
+				box-shadow: inset 0px 0 0 $color-2;
+				padding: .2rem;
+			}
+
+			&::before {
+				top: 22px;
+			}
+		}
+	}
+
+	@include MQ(L) {
+		/* tabbed on top on big devices */
+        width: $tabs-btn-width-M;
+        float: left;
+
+        a {
+            height: $tabs-btn-height-M - 12px;
+            width: $tabs-btn-width-M;
+            padding-top: $tabs-btn-height-M - 77px;
+
+            &.selected {
+                box-shadow: inset 0px 0 0 $color-2;
+				padding: .2rem;
+				box-shadow: 2px 1px 4px 1px rgba(0, 0, 0, 0.25);
+				border-left: 1px solid $grisclaro;
+				border-bottom: 1px solid $grisclaro;
+				border-top: 0px solid $grisclaro;
+            }
+
+            &::before {
+                top: 0px;
+            }
+        }
+    }
+}
+
+.fondoblanco{
+	background-color: #FFFFFF;
+} 
+
+.cd-tabs-content {
+	background: rgba(255,255,255,.0);
+
+	li {
+		display: none;
+		padding: 1.4em;
+        height: auto;
+
+		&.selected {
+			display: block;
+			@include animation(cd-fade-in .5s);
+            border: 0px;
+		}
+
+		p {
+			@include font-size(14px);
+			line-height: 1.6;
+			color: lighten($color-3, 40%);
+			margin-bottom: 2em;
+		}
+	}
+
+	@include MQ(M) {
+		min-height: $tabs-btn-height-M * $tabs-btn-number;
+
+		li {
+			padding: 0em 2em 2em 7em;
+		}
+	}
+
+	@include MQ(L) {
+        min-height: $tabs-btn-height-M * $tabs-btn-number;
+
+		li {
+            padding: 0em 2em 2em 7em;
+
+			p {
+				@include font-size(16px);
+			}
+		}
+	}
+}
+
+@include keyframes(cd-fade-in) {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}

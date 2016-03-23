@@ -1,0 +1,186 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>BanRegio - Banca Electrónica</title>
+		<link rel="stylesheet" href="css/foundation.css" />
+
+		<script src="/js/vendor/jquery-2.1.1.js"></script>
+		<script src="/js/foundation.js"></script>
+		<srippt src="/js/foundation.min.js"></srippt>
+
+		<script src="/js/vendor/modernizr.js"></script>
+		<script src="/js/vendor/jquery.js"></script>
+		<script src="/js/vendor/fastclick.js"></script>
+		<script src="/js/foundation.js"></script>
+		<script src="/js/foundation.alert.js"></script>
+		<!-- ... -->
+
+		<script src="/js/foundation.dropdown.js"></script>
+		<script src="/js/foundation.tab.js"></script>
+		<script src="js/vendor/banregio-sdk.js"></script>
+		<script type="text/javascript">		
+			/*document.write(
+                banregio.api.login(),
+                alert('alert'));*/
+
+		</script>
+		
+	</head>
+	<body>
+
+		<!-- ABRE Encabezado y Menu -->
+		<div class="top-mix">
+			<div id="top-interno" class="sombra">
+				<div class="row">
+					<div class="large-3 medium-3 small-10 columns logo-dashboard">
+						<img src="img/dashborad/BanRegio.svg" alt="BanRegio">
+					</div>
+					<div class="large-7 medium-7 small-6 saludos text-right right mtop20">
+						<span class="type900">¡Hola! Leonides Delgado Moya</span><br/>
+						ULTIMO ACCESO: 21-NOVIEMBRE-2015, 4:30PM
+					</div>
+				</div>
+			</div>
+
+			<div id="menu-interno" class="sombra">
+				<div class="row">
+					<nav class="menu">
+						<ul class="inline-list">
+							<li class="active"><a href="dashboard.html">Resumen</a></li>
+							<li><a href="consulta-miscuentas.html">Consultas</a></li>
+							<li><a href="transferencias-banregio.html">Transferencias</a></li>
+							<li><a href="pagos-servicios.html">Pagos</a></li>
+							<li><a href="ahorroseinversiones-pagare.html">Inversiones</a></li>
+							<li><a href="cartasdecredito-documentocomercial.html">Cartas de Créditos</a></li>
+							<li><a href="administracion-deusuarios.html">Configuraciones</a></li>
+							<li><a href="http://www.banregio.com" target="new">Cerrar sesión</a></li>
+						</ul>     
+					</nav>
+				</div>
+			</div>
+		</div>
+		<!-- CIERRA Encabezado y Menu -->
+
+		<!-- ABRE Titulo -->
+		<div class="row">
+			<div class="large-12 columns mbottom20">
+				<span class="type900 titulos">Pago de servicio</span>
+				<span>Horario de servicio de 8:30 am a 5:30 pm de lunes a viernes</span>
+			</div>
+		</div>
+		<!-- CIERRA Titulo -->
+
+		<div class="row">    
+
+			<div class="large-12 medium-12 columns">
+				<!-- Grid Example -->
+
+
+
+				<div class="large-3 columns left hide-for-small mtop20">
+					<div class="row">
+						<img src="img/transferencias/pasos-01.png" width="150" height="" alt="">
+					</div>
+				</div>
+
+
+
+				<!-- ABRE Panel --> 
+				<div class="panel large-9 columns left sombra internodepaneles">
+
+					<form>
+
+						<div class="row">
+
+							<div class="large-8 medium-12 small-6 columns">
+								<span class="type900 titulospaneles">Agua y Drenaje de Monterrey</span>
+							</div>
+
+							<div class="large-4 medium-6 small-6 columns right">
+								<a onclick="brgLogin()" class="small button secondary right">Domiciliar pago
+								</a> 
+							</div>
+
+						</div>
+
+						<div class="row">
+							<div class="large-8 medium-8 columns left">
+								<label>Cuenta origen</label>
+								<select id='accounts'>
+									
+								</select>
+							</div>
+						</div>
+
+						<!-- ABRE Row de Cuenta Destino -->
+						<div class="row"> 
+							<div class="large-8 medium-8 columns left">
+								<label>Número de referencia <a href="#" data-reveal-id="NumeroReferencia">¿Qué es?</a></label>
+								<input type="text" placeholder="Referencia númerica" id='reference'/>
+							</div>
+						</div>
+						<!-- CIERRA Row de Cuenta Destino -->
+
+	
+						<!-- ABRE Row de Referencia Numérica -->
+						<div class="row">
+
+							<div class="large-4 medium-4 columns left">
+								<label>Cantidad</label>
+								<input type="text" placeholder="Referencia númerica" id='amount'/>
+							</div>
+
+							
+						</div>
+						<!-- CIERRA Row de Referencia Numérica -->
+
+					</form>
+
+					<hr />
+
+					<div class="row">
+						<div class="large-4 medium-6 columns">
+							<a href="pagos-servicios.html" class="underline">Cancelar operación</a>         
+						</div>
+						<div class="large-3 medium-6 columns">
+							<button  onclick='payService()' class="small button">Continuar</button>    
+						</div>
+					</div>
+
+				</div>
+				<!-- CIERRA Panel -->  
+
+			</div>
+		</div>
+
+
+
+		<!-- MODAL ComprobanteFiscal --> 
+		<div id="NumeroReferencia" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<h4 id="modalTitle" class="type900">Número de Referencia</h4>
+
+			Imagen
+
+		</div>
+		<!-- MODAL ComprobanteFiscal -->
+
+
+		
+		
+		<script src="js/vendor/main.js"></script> <!-- Resource jQuery -->
+
+		<script src="js/vendor/jquery.js"></script>
+		<script src="js/foundation/foundation.js"></script>
+		<script src="js/foundation/foundation.reveal.js"></script>
+
+		<!-- Other JS plugins can be included here -->
+
+		<script>
+			$(document).foundation();			
+		</script>		
+
+	</body>
+
+</html>
